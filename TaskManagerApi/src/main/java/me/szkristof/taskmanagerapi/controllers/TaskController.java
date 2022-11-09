@@ -22,12 +22,12 @@ public class TaskController {
         return _tasks;
     }
 
-    @GetMapping("/tasks")
+    @GetMapping("/tasks/all")
     public List<TaskEntity> getAllTasks() {
         return tasks;
     }
 
-    @GetMapping("/tasks/opens")
+    @GetMapping("/tasks/open")
     public List<TaskEntity> getOpenTasks() {
         List<TaskEntity> openTasks = new ArrayList<>();
         for (TaskEntity task : tasks) {
@@ -38,7 +38,7 @@ public class TaskController {
         return openTasks;
     }
 
-    @GetMapping("/tasks/closeds")
+    @GetMapping("/tasks/closed")
     public List<TaskEntity> getClosedTasks() {
         List<TaskEntity> closedTasks = new ArrayList<>();
         for (TaskEntity task : tasks) {
@@ -59,7 +59,7 @@ public class TaskController {
         return null;
     }
 
-    @DeleteMapping("/tasks/delete/{id}")
+    @DeleteMapping("/tasks/{id}")
     public TaskEntity deleteTaskById(@PathVariable int id) {
         TaskEntity taskToDelete = null;
         for (TaskEntity task : tasks) {
