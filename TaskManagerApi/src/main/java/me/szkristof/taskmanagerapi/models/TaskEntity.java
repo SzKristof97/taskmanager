@@ -1,7 +1,5 @@
 package me.szkristof.taskmanagerapi.models;
 
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -12,21 +10,21 @@ public class TaskEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column
     private int ID;
-    @Column(name = "Title", nullable = false)
+    @Column(nullable = false)
     private String title;
-    @Column(name = "Description", nullable = false)
+    @Column(nullable = false)
     private String description;
-    @Column(name = "Status", nullable = false)
+    @Column(nullable = false)
     private String status;
-    @Column(name = "Priority", nullable = false)
+    @Column(nullable = false)
     private String priority;
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CreatedAt", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp created_at;
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "UpdatedAt", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Timestamp updated_at;
 
     //</editor-fold>

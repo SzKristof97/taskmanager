@@ -5,14 +5,13 @@ import me.szkristof.taskmanagerapi.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class TaskController {
 
-    //<editor-fold default-state="collapsed" desc="Autowired field">
+    //<editor-fold default-state="collapsed" desc="Autowired fields">
     @Autowired
     private TaskService taskService;
 
@@ -45,5 +44,13 @@ public class TaskController {
 
     //</editor-fold>
 
+    //<editor-fold default-state="collapsed" desc="PUT Mappings">
+
+    @PutMapping("/tasks/update/{id}")
+    public TaskEntity updateTask(@PathVariable int id, @RequestBody TaskEntity task) {
+        return taskService.updateTask(id, task);
+    }
+
+    //</editor-fold>
 
 }

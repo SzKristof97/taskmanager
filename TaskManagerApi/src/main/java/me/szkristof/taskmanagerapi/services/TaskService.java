@@ -5,7 +5,6 @@ import me.szkristof.taskmanagerapi.models.TaskEntity;
 import me.szkristof.taskmanagerapi.repos.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Description;
-import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,6 +52,21 @@ public class TaskService {
         if (taskEntity.isPresent()) {
             taskRepository.deleteById(id);
             return taskEntity.get();
+        }
+        return null;
+    }
+
+    //</editor-fold>
+
+    //<editor-fold default-state="collapsed" desc="PUT Mapping methods">
+
+    @Parameter(description = "The ID of the task to update")
+    @Description("Updates a task in the database")
+    public TaskEntity updateTask(int id, TaskEntity task) {
+        Optional<TaskEntity> taskEntity = taskRepository.findById(id);
+        if (taskEntity.isPresent()) {
+            task.setID(id);
+            return taskRepository.save(task);
         }
         return null;
     }
