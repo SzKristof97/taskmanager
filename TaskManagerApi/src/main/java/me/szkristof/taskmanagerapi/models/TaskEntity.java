@@ -1,17 +1,30 @@
 package me.szkristof.taskmanagerapi.models;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
 public class TaskEntity {
 
     //<editor-fold default-state="collapsed" desc="Private fields">
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int ID;
+    @Column(name = "Title", nullable = false)
     private String title;
+    @Column(name = "Description", nullable = false)
     private String description;
+    @Column(name = "Status", nullable = false)
     private String status;
+    @Column(name = "Priority", nullable = false)
     private String priority;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "CreatedAt", insertable = false, updatable = false)
     private Timestamp created_at;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "UpdatedAt", insertable = false, updatable = false)
     private Timestamp updated_at;
 
     //</editor-fold>
