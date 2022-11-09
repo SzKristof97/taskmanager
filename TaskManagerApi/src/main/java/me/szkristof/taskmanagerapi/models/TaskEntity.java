@@ -1,9 +1,11 @@
 package me.szkristof.taskmanagerapi.models;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity
+@Entity(name = "tasks")
 public class TaskEntity {
 
     //<editor-fold default-state="collapsed" desc="Private fields">
@@ -21,10 +23,10 @@ public class TaskEntity {
     @Column(name = "Priority", nullable = false)
     private String priority;
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CreatedAt", insertable = false, updatable = false)
+    @Column(name = "CreatedAt", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp created_at;
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "UpdatedAt", insertable = false, updatable = false)
+    @Column(name = "UpdatedAt", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Timestamp updated_at;
 
     //</editor-fold>
