@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class TaskController {
 
     private final List<TaskEntity> tasks = createTasks();
