@@ -38,7 +38,13 @@ public class TaskService {
     @Parameter(description = "The task to be added to the database")
     @Description("Adds a task to the database")
     public TaskEntity addTask(TaskEntity task) {
-        return taskRepository.save(task);
+        Optional<TaskEntity> taskEntity = taskRepository.findById(task.getID());
+
+        if (!taskEntity.isPresent()) {
+            return taskRepository.save(task);
+        }
+
+        return null;
     }
 
     //</editor-fold>

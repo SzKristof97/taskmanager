@@ -1,5 +1,8 @@
 package me.szkristof.taskmanagerapi.models;
 
+import me.szkristof.taskmanagerapi.enums.taskenums.TaskPriorityEnum;
+import me.szkristof.taskmanagerapi.enums.taskenums.TaskStatusEnum;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -16,10 +19,12 @@ public class TaskEntity {
     private String title;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
-    private String status;
-    @Column(nullable = false)
-    private String priority;
+    @Column(nullable = false, columnDefinition = "ENUM('TODO', 'IN_PROGRESS', 'DONE')")
+    @Enumerated(EnumType.STRING)
+    private TaskStatusEnum status;
+    @Column(nullable = false, columnDefinition = "ENUM('LOW', 'MEDIUM', 'HIGH')")
+    @Enumerated(EnumType.STRING)
+    private TaskPriorityEnum priority;
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp created_at;
@@ -32,14 +37,11 @@ public class TaskEntity {
     //<editor-fold default-state="collapsed" desc="Constructors">
     public TaskEntity() {}
 
-    public TaskEntity(int ID, String title, String description, String status, String priority, Timestamp created_at, Timestamp updated_at) {
-        this.ID = ID;
+    public TaskEntity(String title, String description, TaskStatusEnum status, TaskPriorityEnum priority) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.priority = priority;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
     }
     //</editor-fold>
 
@@ -69,19 +71,19 @@ public class TaskEntity {
         this.description = description;
     }
 
-    public String getStatus() {
+    public TaskStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatusEnum status) {
         this.status = status;
     }
 
-    public String getPriority() {
+    public TaskPriorityEnum getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(TaskPriorityEnum priority) {
         this.priority = priority;
     }
 
