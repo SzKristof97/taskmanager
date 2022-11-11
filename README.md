@@ -4,7 +4,7 @@ Ez a RestAPI arra szolgál, hogy kapcsolatot létesítsen a MySql és a front-en
 
 Maga az API OpenAPI-t használ ahhoz, hogy létrehozzon egy beépített dokumentációt (swagger-ui), ahol akár tesztelni is lehet a különböző lekérdezéseket!
 
-## Mire képes / Hogyan működik ?
+## MySQL Beállítása
 
 Első sorban az api használatához, szükséges egy MySql szerver és egy adatbázis. (Maga az adatbázis bármilyen néven létre jöhet, viszont táblát nem kell bele létre hozni, a program autómatikusan megcsinálja és beállítja)
 
